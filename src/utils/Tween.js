@@ -45,15 +45,15 @@ export default class Tween {
                         break;
                 }
 
-                if(t.timeElapsed > t.duration)
+                if(t.timeElapsed >= t.duration)
                     Tween.lowestLevel(t.object, key)[key.split(".").pop()] = b;
             })
             
-            if(t.timeElapsed > t.duration)
+            if(t.timeElapsed >= t.duration)
             {
-                Tween.transitions.splice(Tween.transitions.indexOf(t));
+                Tween.transitions.splice(Tween.transitions.indexOf(t), 1);
                 if(t.whenDone) 
-                    t.whenDone();
+                    t.whenDone(t.object);
             }
         })
     }
